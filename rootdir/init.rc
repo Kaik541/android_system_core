@@ -419,11 +419,15 @@ service drm /system/bin/drmserver
     user drm
     group system inet drmrpc
 
+on property:init.svc.ril-daemon=running
+    start media
+
 service media /system/bin/mediaserver
     class main
     user media
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc
     ioprio rt 4
+    disabled
 
 service bootanim /system/bin/bootanimation
     class main
